@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="flex justify-center items-center w-full h-screen">
+      <div class="bg-black grid grid-cols-4 gap-4 p-4 game-grid">
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-1"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-1"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-1"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-1"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-2"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-2"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-2"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-2"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-3"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-3"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-3"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-3"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-4"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-4"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-4"
+        ></div>
+        <div
+          class="bg-white border border-2 w-40 h-40 game-item game-item-empty game-item-row-4"
+        ></div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    .game-item-2 {
+      width: 100%;
+      height: 100%;
+      background-color: yellow;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      font-weight: bold;
+    }
+    .game-item-4 {
+      width: 100%;
+      height: 100%;
+      background-color: orange;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      font-weight: bold;
+    }
+  </style>
+
+  <script>
+    function generateItem(item) {
+      const newDiv = document.createElement("div");
+      newDiv.classList.add("game-item-" + item);
+      newDiv.innerHTML = item;
+
+      return newDiv;
+    }
+
+    function generateItem2OrItem4() {
+      const random = Math.random() * (100 - 1) + 1;
+
+      if (random > 90) {
+        return item4();
+      }
+
+      return item2();
+    }
+
+    function item2() {
+      return generateItem("2");
+    }
+
+    function item4() {
+      return generateItem("4");
+    }
+
+    function generateBaseItem() {
+      const item1 = selectRandomEmptyItem();
+      item1.append(generateItem2OrItem4());
+      item1.classList.remove("game-item-empty");
+
+      const item2 = selectRandomEmptyItem();
+      item2.append(generateItem2OrItem4());
+      item2.classList.remove("game-item-empty");
+
+      return generateItem2OrItem4();
+    }
+
+    function selectRandomEmptyItem() {
+      const items = document.querySelectorAll(".game-item-empty");
+      return items[Math.floor(Math.random() * items.length)];
+    }
+    function manageActions() {
+      document.addEventListener("keyup", () => {
+        switch (event.key) {
+          case "z":
+            moveUp();
+            break;
+          case "q":
+            moveLeft();
+            break;
+          case "s":
+            moveDown();
+            break;
+          case "d":
+            moveRight();
+            break;
+        }
+      });
+    }
+
+    function moveUp() {
+      console.log(`move moveUp`);
+    }
+
+    function moveLeft() {
+      console.log(`move moveLeft`);
+    }
+
+    function moveDown() {
+      console.log(`move moveDown`);
+    }
+
+    function moveRight() {
+        const items = document.querySelectorAll('.game-item-row-1, .game-item-row-2, .game-item-row-3')
+    }
+
+    document.addEventListener("DOMContentLoaded", (event) => {
+      generateBaseItem();
+
+      manageActions();
+    });
+  </script>
+</html>
